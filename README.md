@@ -20,3 +20,6 @@ Tekhartha Zenyatta,Omnic School,20:20.10
 
 Pay close attention to the lack of spacing before and after commas as well as the leniency with the time formatting.
 The number of digits representing the time run allows for entries like `15:30.115` or `1:10.1`.
+The entries in the file need not have any sort of ordering (i.e. you do not need to have runners on the same team together).
+
+Also, any number of runners per team can be added. The scoring will only take into account the top 7. Any team with less than 5 runners will be disqualified and that team's runners will not have an impact on the scoring.

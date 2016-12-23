@@ -152,7 +152,7 @@ void XCRace::print_race()
     if(teams[i].score > 0)
       std::cout << i+1 << ". " << teams[i].name << " : " << teams[i].score << std::endl;
     else
-      std::cout << 0 << ". " << teams[i].name << std::endl;
+      std::cout << "   " << teams[i].name << std::endl;
   }
 }
 
@@ -160,7 +160,7 @@ void XCRace::write_race(std::string file_name)
 {
   std::ofstream out_file;
   out_file.open(file_name);
-  std::string place,run_score;
+  std::string place,team_score,run_score;
 
   out_file << "RACE RESULTS" << std::endl;
   for(unsigned int i = 0; i < runners.size(); i++)
@@ -174,11 +174,18 @@ void XCRace::write_race(std::string file_name)
   for(unsigned int i = 0; i < teams.size(); i++)
   {
     if(teams[i].score > 0)
-      place = std::to_string(teams[i].score);
-    else
-      place = " ";
+    {
+      place = std::to_string(i+1) + ". ";
+      team_score = std::to_string(teams[i].score);
+    }
 
-    out_file << i+1 << ". " << teams[i].name << " " << teams[i].score << std::endl;
+    else
+    {
+      place = "   ";
+      team_score = " ";
+    }
+
+    out_file << place << teams[i].name << " " << team_score << std::endl;
 
     for(unsigned int j = 0; j < teams[i].team_runners.size(); j++)
     {

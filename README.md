@@ -11,10 +11,12 @@ To test that that program works, you can use the sample data provided in the `da
 
 ## Input file formatting
 The input file must be in the following format
+
 ```
-First Last,School Name,MM:SS.mm
-First Last,School Name,MM:SS.mm
+Lena Oxton,Dank Memes High School,3:34.10
+Tekhartha Zenyatta,Omnic School,20:20.10
 ...
 ```
 
-Where M is for minutes, S is for seconds, and m is for decimals of seconds. Each of these can be any length so you can have times like `15:30.115` or `1:10.1`.
+Pay close attention to the lack of spacing before and after commas as well as the leniency with the time formatting.
+The number of digits representing the time run allows for entries like `15:30.115` or `1:10.1`.

@@ -10,7 +10,7 @@ Simply run `./xcscore file.csv` where file.csv is the input file with the XC rac
 To test that that program works, you can use the sample data provided in the `data` folder. Try running `./xcscore data/sample.csv`
 
 ## Input file formatting
-The input file must be in the following format
+The input file must be in the following format<br />
 `First Last,School Name,MM:SS.mm`<br />
 `First Last,School Name,MM:SS.mm`<br />
 `...`<br />

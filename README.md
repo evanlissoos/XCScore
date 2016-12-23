@@ -15,8 +15,10 @@ If you would like a more detailed output than just an ordered output of the team
 The input file must be in the following format
 
 ```
-Lena Oxton,Dank Memes High School,3:34.10
+Lena Oxton,Some British School,3:34.10
 Tekhartha Zenyatta,Omnic School,20:20.10
+Lúcio Correia dos Santos,Some Brazilian School,12:11.21
+John Oliver,Some British School,45:12.45
 ...
 ```
 

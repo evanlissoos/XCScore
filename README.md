@@ -11,5 +11,5 @@ To test that that program works, you can use the sample data provided in the `da
 
 ## Input file formatting
 The input file must be in the following format
-`First Last,School Name,MM:SS.mm \n First Last,School Name, \n MM:SS.mm ...`
+`First Last,School Name,MM:SS.mm <br /> First Last,School Name,<br /> MM:SS.mm ...`
 M is for minutes, S is for seconds, and m is for decimals of seconds. Each of these can be any length so you can have times like `15:30.115` or `1:10.1`.

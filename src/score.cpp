@@ -27,7 +27,7 @@ float calculate_time(std::string str)
                   else
                     min += str[i];
                   break;
-      case 1  :   if(str[i] == '.')
+      case 1  :   if(str[i] == '.' || str[i] == ':')
                     seg++;
                   else
                     sec += str[i];
@@ -59,6 +59,25 @@ int main(int argc, char* argv[])
     return 0;
   }
 
+  //Checking if want to output results to file
+  bool should_output = false;
+  std::string flag,out_file = "results.csv";
+  if(argc >= 3)
+  {
+    flag = std::string(argv[2]);
+    //If want to add more flags, can make a dictionary mapping flags to function pointers
+    if(flag == "-o" || flag == "-O")
+      should_output = true;
+    else
+    {
+      std::cout << "ERROR: No valid option '" << flag << "' exists" << std::endl;
+      return 0;
+    }
+
+    if(argc >= 4)
+      out_file = std::string(argv[3]);
+  }
+
   //Going through the file and setting up structures
   std::string name, school, time_run;  //std::strings to hold the values grabbed from the file
   XCRace race;
@@ -71,6 +90,9 @@ int main(int argc, char* argv[])
     getline(in_file, school, ',');
     getline(in_file, time_run);
 
+    if(name == "")
+      break;
+
     hold_time = calculate_time(time_run);
     if(hold_time == -1.0)
       return 0;
@@ -81,7 +103,8 @@ int main(int argc, char* argv[])
 
   race.score_race();
   race.print_race();
-  //race.output_results("output.csv");
+  if(should_output)
+    race.write_race(out_file);
 
   return 0;
 }

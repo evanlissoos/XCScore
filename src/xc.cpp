@@ -14,6 +14,17 @@ bool comp_runners(Runner* a, Runner* b)
   return (*a < *b);
 }
 
+//Function to convert a float representing time in seconds to a std::string
+inline std::string floatToTime(float time_in)
+{
+  int min = (int) time_in/60;
+  int sec = (int) time_in - (min*60);
+  float msec = time_in - ((min*60) + sec);
+  std::stringstream ss;
+  ss << std::fixed << std::setprecision(3) << msec;
+  return std::to_string(min) + ":" + std::to_string(sec) + ss.str().substr(1);
+}
+
 //XCRace::Runner implementations
 Runner::Runner(std::string n, float tr, int ti)
 {
@@ -98,6 +109,7 @@ void XCRace::add_runner(std::string n, std::string sn, int tr)
   if(school_id.find(sn) == school_id.end())
   {
     school_id.emplace(sn, id_gen);
+    school_id_rev.emplace(id_gen,sn);
     teams.push_back(Team(sn));
     id_gen++;
   }
@@ -141,6 +153,58 @@ void XCRace::print_race()
       std::cout << i+1 << ". " << teams[i].name << " : " << teams[i].score << std::endl;
     else
       std::cout << 0 << ". " << teams[i].name << std::endl;
+  }
+}
+
+void XCRace::write_race(std::string file_name)
+{
+  std::ofstream out_file;
+  out_file.open(file_name);
+  std::string place,run_score;
+
+  out_file << "RACE RESULTS" << std::endl;
+  for(unsigned int i = 0; i < runners.size(); i++)
+  {
+    out_file << i+1 << ".\t" << runners[i]->name << "\t" << school_id_rev[runners[i]->team_id]
+    << "\t" << floatToTime(runners[i]->time_run) << std::endl;
+  }
+  out_file << std::endl;
+
+  out_file << "TEAM RESULTS" << std::endl;
+  for(unsigned int i = 0; i < teams.size(); i++)
+  {
+    if(teams[i].score > 0)
+      place = std::to_string(teams[i].score);
+    else
+      place = " ";
+
+    out_file << i+1 << ". " << teams[i].name << " " << teams[i].score << std::endl;
+
+    for(unsigned int j = 0; j < teams[i].team_runners.size(); j++)
+    {
+      if(j == 5 || j == 6)
+        run_score = "(" + std::to_string(teams[i].team_runners[j]->ind_score) + ")";
+      else if(teams[i].team_runners[j]->ind_score > 0)
+        run_score = std::to_string(teams[i].team_runners[j]->ind_score);
+      else
+        run_score = " ";
+
+      out_file << "\t\t" << teams[i].team_runners[j]->name << "\t" << run_score << "\t" << floatToTime(teams[i].team_runners[j]->time_run) << std::endl;
+    }
+    out_file << std::endl;
+  }
+
+  out_file.close();
+}
+
+void XCRace::debug()
+{
+  for(unsigned int i = 0; i < teams.size(); i++)
+  {
+    for(unsigned int j = 0; j < teams[i].team_runners.size(); j++)
+    {
+      std::cout << teams[i].team_runners[j]->name << " " << teams[i].team_runners[j]->ind_score << std::endl;
+    }
   }
 }
 

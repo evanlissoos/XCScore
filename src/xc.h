@@ -12,7 +12,10 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <iomanip>
+#include <sstream>
 #include <iostream>
+#include <fstream>
 
 class Runner
 {
@@ -48,6 +51,8 @@ class XCRace
     void add_runner(std::string n, std::string sn, int tr);                     //Adds Runner to race and to the team
     void score_race();                                                          //Function that sorts race by time run
     void print_race();                                                          //Prints team results of the race
+    void write_race(std::string file_name);                                     //Writes results to a file with the name given in the parameter
+    void debug();                                                               //Function that is changed to debug the program at given points during excecution
 
   private:
     void sort_race();                                                           //Sorts the race's runners by time run
@@ -57,6 +62,7 @@ class XCRace
     std::vector<Runner*> runners;                                               //List of pointers to runners
     std::vector<Team> teams;                                                    //List of teams
     std::map<std::string, int> school_id;                                       //Mapping of school names to ids
+    std::map<int, std::string> school_id_rev;                                   //Reverse mapping used for after the the teams have been sorted
     int id_gen;                                                                 //Int used to keep track and assign school ids
 };
 

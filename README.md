@@ -27,3 +27,6 @@ The number of digits representing the time run allows for entries like `15:30.11
 The entries in the file need not have any sort of ordering (i.e. you do not need to have runners on the same team together).
 
 Also, any number of runners per team can be added. The scoring will only take into account the top 7. Any team with less than 5 runners will be disqualified and that team's runners will not have an impact on the scoring.
+
+## Compiler
+By default, the Makefile uses g++ as the compiler, if you are on a Mac or any system where clang++ is the only C++ compiler, just edit the Makefile and replace `g++` with `clang++`

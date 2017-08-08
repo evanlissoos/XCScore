@@ -69,7 +69,7 @@ bool Team::operator<(const Team& other) const
       score_tie = score + team_runners[5]->ind_score;
       score_tie_other = other.score + other.team_runners[5]->ind_score;
     }
-    return score < other.score;
+    return score_tie < score_tie_other;
   }
 
   return score < other.score;

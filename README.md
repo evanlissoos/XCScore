@@ -3,7 +3,7 @@ C++ program that scores a cross country race based on CSV file input
 
 ## Installation
 - Clone the repository and navigate to the directory of the project.
-- Run `./setup.sh`
+- Run `sh setup.sh`
 
 ## Running the program
 Simply run `./xcscore file.csv` where file.csv is the input file with the XC race data.
